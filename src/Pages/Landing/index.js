@@ -20,7 +20,7 @@ const Landing = () => {
     return (
         <div className="landing">
             <div className={menuOpened && isMobile ? 'overlay' : 'hidden'} onClick={() => setMenuOpened(false)}></div>
-            <Menu menuOpened={menuOpened} />
+            {isMobile && <Menu menuOpened={menuOpened} />}
             <Navbar setMenuOpened={setMenuOpened} menuOpened={menuOpened} />
             <LandingContent />
         </div>
