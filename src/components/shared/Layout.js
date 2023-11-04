@@ -8,15 +8,17 @@ import Menu from './Menu'
 import { useDispatch, useSelector } from 'react-redux'
 import { openMenu } from '../../features/commonSlice'
 import Modal from '../Modals/Modal'
+import SearchModal from '../Modals/SearchModal'
 
 const Layout = () => {
     const isMobile = useMobileDetection()
-    const { menuOpened, modalOpened } = useSelector((state) => state.common)
+    const { menuOpened, modalOpened, searchModal } = useSelector((state) => state.common)
     const dispatch = useDispatch()
 
     return (
         <div className="layout">
             <Modal isOpen={modalOpened} />
+            <SearchModal isOpen={searchModal} />
             {isMobile ? <Menu /> : <Sidebar />}
             <div className={menuOpened && isMobile ? 'overlay' : 'hidden'} onClick={() => dispatch(openMenu(false))}></div>
             <div className="flex flex-1 flex-col">

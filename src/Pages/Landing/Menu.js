@@ -18,7 +18,7 @@ const Menu = ({ menuOpened }) => {
                     <HiBriefcase />
                     <span>Business Login</span>
                 </Link>
-                <Link className="menu-item">
+                <Link className="menu-item" to={'http://localhost:5000/auth/google/employee'}>
                     <HiUser />
                     <span>Employee Login</span>
                 </Link>

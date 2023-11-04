@@ -6,6 +6,7 @@ import './styles.css'
 import Menu from './Menu'
 import LandingContent from './LandingContent'
 import { useMobileDetection } from '../../hooks/useMobile'
+import { Navigate } from 'react-router-dom'
 
 const Landing = () => {
     const { isAuthenticated, user } = useSelector((state) => state.user)
@@ -16,6 +17,16 @@ const Landing = () => {
     useEffect(() => {
         dispatch(fetchUser())
     }, [])
+
+    if(user.role === 'business') {
+       return <Navigate to={'/business'} />
+    }
+
+    if(user.role === 'employee') {
+        return <Navigate to={'/normal'} />
+     }
+
+    
 
     return (
         <div className="landing">

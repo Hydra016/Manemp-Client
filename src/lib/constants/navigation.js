@@ -1,13 +1,15 @@
 import {
 	HiOutlineViewGrid,
-	HiLogout,
 	HiOutlineQuestionMarkCircle,
 	HiOutlineCog,
     HiUserGroup,
     HiCalendar,
     HiClock,
     HiPlusCircle,
-    HiLibrary
+	HiOutlineEye,
+	HiUserAdd,
+	HiOutlineArchive,
+	HiViewGridAdd
 } from 'react-icons/hi'
 
 
@@ -36,6 +38,46 @@ export const DASHBOARD_SIDEBAR_LINKS = [
 		path: '/schedule',
 		icon: <HiCalendar />
 	},
+	{
+		key: 'requests',
+		label: 'Requests',
+		path: '/requests',
+		icon: <HiUserAdd />
+	},
+	{
+		key: 'inventory',
+		label: 'Inventory',
+		path: '/inventory',
+		icon: <HiOutlineArchive />
+	},
+
+]
+
+export const DASHBOARD_SIDEBAR_EMPLOYEE_LINKS = [
+	{
+		key: 'dashboard',
+		label: 'Dashboard',
+		path: '/',
+		icon: <HiOutlineViewGrid />
+	},
+	{
+		key: 'add_shift',
+		label: 'Add Shift',
+		path: '/add_shift',
+		icon: <HiPlusCircle />
+	},
+	{
+		key: 'view_shifts',
+		label: 'View Shifts',
+		path: '/viewShifts',
+		icon: <HiOutlineEye />
+	},
+	{
+		key: 'requests',
+		label: 'Requests',
+		path: '/requests',
+		icon: <HiViewGridAdd />
+	},
 ]
 
 export const DASHBOARD_SIDEBAR_BOTTOM_LINKS = [
@@ -52,3 +94,5 @@ export const DASHBOARD_SIDEBAR_BOTTOM_LINKS = [
 		icon: <HiOutlineQuestionMarkCircle />
 	},
 ]
+
+

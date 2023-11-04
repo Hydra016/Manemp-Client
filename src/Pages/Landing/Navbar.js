@@ -8,8 +8,10 @@ const Navbar = ({ setMenuOpened, menuOpened }) => {
     return (
         <div className="navbar">
             <div className="flex items-center gap-2 px-1 py-3">
-                <FcBullish fontSize={24} />
-                <span className="nav-heading">Manemp</span>
+                <Link to={'/'} className="logo-link">
+                    <FcBullish fontSize={24} />
+                    <span className="nav-heading">Manemp</span>
+                </Link>
                 <div className="nav-links">
                     <a className="nav-link" href="/">
                         About us
@@ -22,11 +24,11 @@ const Navbar = ({ setMenuOpened, menuOpened }) => {
 
             <div className="nav-btn-container">
                 <HiMenuAlt1 onClick={() => setMenuOpened(!menuOpened)} className="nav-menu" />
-                <Link className="nav-btn">
+                <Link to={'http://localhost:5000/auth/google/employee'} className="nav-btn">
                     <HiUser />
                     <span>Employee Login</span>
                 </Link>
-                <Link to="http://localhost:5000/auth/google" className="nav-btn">
+                <Link to="/login" state={{ loginType: 'business' }} className="nav-btn">
                     <HiBriefcase />
                     <span>Business Login</span>
                 </Link>

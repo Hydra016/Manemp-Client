@@ -2,7 +2,8 @@ import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
     menuOpened: false,
-    modalOpened: false
+    modalOpened: false,
+    searchModal: false
 }
 
 const commonSlice = createSlice({
@@ -14,10 +15,13 @@ const commonSlice = createSlice({
         },
         openModal: (state, action) => {
             state.modalOpened = action.payload
+        },
+        openSearchModal: (state, action) => {
+            state.searchModal = action.payload
         }
     }
 })
 
-export const { openMenu, openModal } = commonSlice.actions;
+export const { openMenu, openModal, openSearchModal } = commonSlice.actions;
 export default commonSlice.reducer;
 
