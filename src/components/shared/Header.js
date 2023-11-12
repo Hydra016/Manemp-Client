@@ -1,9 +1,11 @@
 import React, { useState } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
-import { HiMenuAlt1, HiSearch } from 'react-icons/hi'
+import { HiMenuAlt1, HiSearch, HiOutlineBell } from 'react-icons/hi'
 import { openMenu, openSearchModal } from '../../features/commonSlice'
 import { useMobileDetection } from '../../hooks/useMobile'
 import { searchShop } from '../../features/shopSlice'
+import { Link } from 'react-router-dom'
+import Dropdown from './Dropdown'
 
 const Header = () => {
     const { user } = useSelector((state) => state.user)
@@ -13,9 +15,13 @@ const Header = () => {
     const [ data, setdata ] = useState({
         shopId: ''
     })
+    const [ showDropDown, setShowDropDown ] = useState(false)
 
     return (
         <div className="header">
+            
+            {showDropDown && <Dropdown user={user} />}
+
             {isMobile && (
                 <button className='menuButton' onClick={() => dispatch(openMenu(true))}>
                     <HiMenuAlt1 />
@@ -23,7 +29,8 @@ const Header = () => {
             )}
             <div className='header-sub'>
             <span>Welcome {user && user.role === 'business' ? user.shopName : user.givenName}</span>
-            <span className='sub-text'>{ user.role === 'business' && `Shop id: ${user._id}`}</span>
+            <div className='header-secondary-container'>
+
             {user.role === 'employee' && <div className='employee-header-side'>
             <div className='employee-header-search'>
                 <button onClick={() => {
@@ -33,8 +40,17 @@ const Header = () => {
                 }><HiSearch /></button>
                 <input onChange={(e) => setdata({...data, shopId: e.target.value})} type='text' placeholder='Enter shop id' />
             </div>
-            <img src={user && user.picture} className='user-img' />
             </div>}
+            <div className='header-notsub'>
+            <Link className='notification'>
+            <HiOutlineBell />
+            </Link>
+            <button onClick={() => setShowDropDown(!showDropDown)}>
+            <img src={user && user.picture} className='user-img' />
+            </button>
+            </div>
+            </div>
+
             </div>
         </div>
     )

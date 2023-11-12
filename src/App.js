@@ -15,8 +15,7 @@ import Landing from './Pages/Landing'
 import Register from './Pages/Auth/Register'
 import Login from './Pages/Auth/Login'
 import EmployeeDashboard from './Pages/EmployeeFlow/EmployeeDashboard'
-import BusinessRequests from './Pages/Requests/BusinessRequests'
-import EmployeeRequests from './Pages/Requests/EmployeeRequests'
+import Requests from './Pages/Requests'
 
 function App() {
     const dispatch = useDispatch()
@@ -57,7 +56,7 @@ function App() {
                             <Route path="employees" element={<Employees />} />
                             <Route path="shifts" element={<Shift />} />
                             <Route path="schedule" element={<Schedule />} />
-                            <Route path="requests" element={<BusinessRequests />} />
+                            <Route path="requests" element={<Requests />} />
                         </Route>
                     )}
 
@@ -71,7 +70,7 @@ function App() {
                             }
                         >
                             <Route index path="/" element={<EmployeeDashboard />} />
-                            <Route path="requests" element={<EmployeeRequests />} />
+                            <Route path="requests" element={<Requests />} />
                         </Route>
                     )}
                 </Routes>
