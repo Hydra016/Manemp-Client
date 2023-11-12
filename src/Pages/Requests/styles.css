@@ -34,14 +34,26 @@
     justify-content: space-around;
     align-items: center;
     padding: 10px 10px;
-    background-color: #dc2626;
-    color: #450a0a;
     border-radius: 5px;
     transition: background 0.3s ease-in-out;
 }
 
-.retract-link div:hover {
+.retract-link-color div {
+    background-color: #dc2626;
+    color: #450a0a;
+}
+
+.retract-link-color div:hover {
     background-color: #ef4444;
+}
+
+.accept-offer div {
+    background-color: #65a30d;
+    color: #1a2e05;
+}
+
+.accept-offer div:hover {
+    background-color: #84cc16;
 }
 
 .singleRequest-shopType {

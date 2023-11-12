@@ -20,7 +20,6 @@ export const deleteRequest = createAsyncThunk('request/deleteRequest', async (da
 
 export const acceptRequest = createAsyncThunk('request/acceptRequest', async (data) => {
   const response = await axios.put('http://localhost:5000/api/acceptRequest', data);
-  console.log(response)
   return response;
 });
 

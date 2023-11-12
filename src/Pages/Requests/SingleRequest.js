@@ -22,8 +22,6 @@ const SingleRequest = ({ requestData }) => {
         )
     }, [])
 
-    console.log(Object.keys(requestData.status).find((key) => requestData.status[key] === 1))
-
     return (
         <tr className="singleRequest">
             {userRequest && (
@@ -58,7 +56,7 @@ const SingleRequest = ({ requestData }) => {
                             onClick={() =>
                                 dispatch(acceptRequest({ requestId: requestData._id, userId: user.googleId, employeeId: requestData.employeeId  }))
                             }
-                            className="retract-link"
+                            className="retract-link accept-offer"
                         >
                             <div>
                                 <span>Accept Offer</span>
@@ -71,7 +69,7 @@ const SingleRequest = ({ requestData }) => {
                             onClick={() =>
                                 dispatch(deleteRequest({ requestId: requestData._id, userId: user.googleId }))
                             }
-                            className="retract-link"
+                            className="retract-link retract-link-color"
                         >
                             <div>
                                 <span>Retract Offer</span>
