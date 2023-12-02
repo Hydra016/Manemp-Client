@@ -20,7 +20,7 @@ const SingleRequest = ({ requestData }) => {
         fetchRequestData(
             user.role === 'business' ? { employeeId: requestData.employeeId } : { businessId: requestData.businessId }
         )
-    }, [])
+    }, [requestData])
 
     return (
         <tr className="singleRequest">

@@ -3,7 +3,8 @@ import { createSlice } from "@reduxjs/toolkit";
 const initialState = {
     menuOpened: false,
     modalOpened: false,
-    searchModal: false
+    searchModal: false,
+    saveModal: false
 }
 
 const commonSlice = createSlice({
@@ -18,10 +19,13 @@ const commonSlice = createSlice({
         },
         openSearchModal: (state, action) => {
             state.searchModal = action.payload
+        },
+        openSaveModal: (state, action) => {
+            state.saveModal = action.payload
         }
     }
 })
 
-export const { openMenu, openModal, openSearchModal } = commonSlice.actions;
+export const { openMenu, openModal, openSearchModal, openSaveModal } = commonSlice.actions;
 export default commonSlice.reducer;
 

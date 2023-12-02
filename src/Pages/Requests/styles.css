@@ -79,8 +79,8 @@
 }
 
 .accepted {
-   background-color: #86efac !important;
-   color: #365314 !important;
+    background-color: #86efac !important;
+    color: #365314 !important;
 }
 
 .pending {
@@ -90,4 +90,26 @@
 
 .user-info div {
     background-color: #e2e8f0 !important;
+}
+
+.requests-container {
+    height: 100%;
+}
+
+.no-request {
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+}
+
+.no-request-icon {
+    width: 100px;
+    height: 150px;
+}
+
+.no-request-container {
+    margin-top: 10rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }

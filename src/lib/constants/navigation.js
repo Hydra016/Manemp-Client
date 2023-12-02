@@ -63,13 +63,13 @@ export const DASHBOARD_SIDEBAR_EMPLOYEE_LINKS = [
 	{
 		key: 'add_shift',
 		label: 'Add Shift',
-		path: '/add_shift',
+		path: '/add-shift',
 		icon: <HiPlusCircle />
 	},
 	{
 		key: 'view_shifts',
 		label: 'View Shifts',
-		path: '/viewShifts',
+		path: '/shifts',
 		icon: <HiOutlineEye />
 	},
 	{

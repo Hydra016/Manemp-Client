@@ -2,6 +2,7 @@ import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { fetchRequests } from '../../features/requestsSlice'
 import SingleRequest from './SingleRequest'
+import { CiFileOff } from 'react-icons/ci'
 
 const Requests = () => {
     const { requests, isLoading, employeeRequests } = useSelector((state) => state.request)
@@ -13,7 +14,7 @@ const Requests = () => {
     }, [])
 
     return (
-        <div>
+        <div className='requests-container'>
             <span className="sub-heading">{requests && requests.length} Active Requests</span>
             <table className="request-table">
                 <thead>
@@ -26,10 +27,14 @@ const Requests = () => {
                         <td className="table-cell">{user.role === 'employee' ? 'Request Action' : 'Reject Offer'}</td>
                     </tr>
                 </thead>
-                <tbody>
-                    {requests && requests.map(requestData => <SingleRequest requestData={requestData} />)}
-                </tbody>
+                {requests && requests.length > 0 && <tbody>
+                    {requests && requests.map(requestData => <SingleRequest key={requestData._id} requestData={requestData} />)}
+                </tbody> }
             </table>
+            {requests.length < 1 && <div className='no-request'>
+                <div className='no-request-container'><CiFileOff className='no-request-icon'/>
+                <span>No requests to show</span></div>
+                </div>}
         </div>
     )
 }

@@ -21,7 +21,7 @@ const Layout = () => {
             <SearchModal isOpen={searchModal} />
             {isMobile ? <Menu /> : <Sidebar />}
             <div className={menuOpened && isMobile ? 'overlay' : 'hidden'} onClick={() => dispatch(openMenu(false))}></div>
-            <div className="flex flex-1 flex-col">
+            <div className="flex flex-1 flex-col root-container">
                 <div>
                     <Header />
                 </div>

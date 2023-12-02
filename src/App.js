@@ -16,6 +16,8 @@ import Register from './Pages/Auth/Register'
 import Login from './Pages/Auth/Login'
 import EmployeeDashboard from './Pages/EmployeeFlow/EmployeeDashboard'
 import Requests from './Pages/Requests'
+import ViewShift from './Pages/Shifts/EmployeeShift/ViewShift'
+import AddShift from './Pages/Shifts/EmployeeShift/AddShift'
 
 function App() {
     const dispatch = useDispatch()
@@ -71,6 +73,8 @@ function App() {
                         >
                             <Route index path="/" element={<EmployeeDashboard />} />
                             <Route path="requests" element={<Requests />} />
+                            <Route path='add-shift' element={<AddShift />} />
+                            <Route path="shifts" element={<ViewShift />} />
                         </Route>
                     )}
                 </Routes>
