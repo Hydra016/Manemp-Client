@@ -27,12 +27,22 @@ export const fetchUser = createAsyncThunk("user/fetchUser", async () => {
       console.log(err.message)
     }
   })
+
+  export const getEmployeesByBusiness = createAsyncThunk("user/getEmployeesByBusiness", async (data) => {
+    try {
+      const response = await axios.post('http://localhost:5000/api/myEmployees', data)
+      return response
+    } catch (err) {
+      console.log(err)
+    }
+  })
   
 
 const initialState = {
   user: {},
   isLoading: false,
   isAuthenticated: false,
+  employees: []
 };
 
 const userSlice = createSlice({
@@ -62,6 +72,16 @@ const userSlice = createSlice({
     [singupUser.rejected]: (state) => {
       state.isLoading = false;
       state.isAuthenticated = false;
+    },
+    [getEmployeesByBusiness.pending]: (state) => {
+      state.isLoading = true;
+    },
+    [getEmployeesByBusiness.fulfilled]: (state, action) => {
+      state.isLoading = false;
+      state.employees = action.payload?.data;
+    },
+    [getEmployeesByBusiness.rejected]: (state) => {
+      state.isLoading = false;
     },
     [logoutUser.pending]: (state) => {
       state.isLoading = true;

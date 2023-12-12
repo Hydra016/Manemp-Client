@@ -27,43 +27,51 @@ const SingleRequest = ({ requestData }) => {
             {userRequest && (
                 <>
                     <td className="table-cell">
-                        <div className='retract-link user-info'>
-                        <img src={userRequest.picture} className="request-img" />
-                        <div className="singleRequest-shopType">
-                            <CiShop />
-                            <span>{userRequest.shopName ? userRequest.shopName : userRequest.givenName}</span>
-                        </div>
+                        <div className="retract-link user-info">
+                            <img src={userRequest.picture} className="request-img" />
+                            <div className="singleRequest-shopType">
+                                <CiShop />
+                                <span>{userRequest.shopName ? userRequest.shopName : userRequest.givenName}</span>
+                            </div>
                         </div>
                     </td>
 
                     {user.role === 'employee' && <td className="table-cell">{userRequest.shopType}</td>}
-                    <td className="table-cell">{requestData && requestData.createdAt.slice(0,10)}</td>
+                    <td className="table-cell">{requestData && requestData.createdAt.slice(0, 10)}</td>
                     <td className="table-cell">
-                        <div className='retract-link'>
-                        <div
-                            className={`status ${Object.keys(requestData.status).find(
-                                (key) => requestData.status[key] === 1
-                            )}`}
-                        >
-                            {(requestData &&
-                                Object.keys(requestData.status).find((key) => requestData.status[key] === 1)) ||
-                                ''}
-                        </div>
+                        <div className="retract-link">
+                            <div
+                                className={`status ${Object.keys(requestData.status).find(
+                                    (key) => requestData.status[key] === 1
+                                )}`}
+                            >
+                                {(requestData &&
+                                    Object.keys(requestData.status).find((key) => requestData.status[key] === 1)) ||
+                                    ''}
+                            </div>
                         </div>
                     </td>
-                    {user.role === 'business' && <td className="table-cell">
-                        <button
-                            onClick={() =>
-                                dispatch(acceptRequest({ requestId: requestData._id, userId: user.googleId, employeeId: requestData.employeeId  }))
-                            }
-                            className="retract-link accept-offer"
-                        >
-                            <div>
-                                <span>Accept Offer</span>
-                                <HiTrash />
-                            </div>
-                        </button>
-                    </td>}
+                    {user.role === 'business' && (
+                        <td className="table-cell">
+                            <button
+                                onClick={() =>
+                                    dispatch(
+                                        acceptRequest({
+                                            requestId: requestData._id,
+                                            userId: user.googleId,
+                                            employeeId: requestData.employeeId
+                                        })
+                                    )
+                                }
+                                className="retract-link accept-offer"
+                            >
+                                <div>
+                                    <span>Accept Offer</span>
+                                    <HiTrash />
+                                </div>
+                            </button>
+                        </td>
+                    )}
                     <td className="table-cell">
                         <button
                             onClick={() =>

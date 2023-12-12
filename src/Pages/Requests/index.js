@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import { fetchRequests } from '../../features/requestsSlice'
 import SingleRequest from './SingleRequest'
 import { CiFileOff } from 'react-icons/ci'
+import LoadingScreen from '../../components/shared/LoadingScreen'
 
 const Requests = () => {
     const { requests, isLoading, employeeRequests } = useSelector((state) => state.request)
@@ -16,7 +17,7 @@ const Requests = () => {
     return (
         <div className='requests-container'>
             <span className="sub-heading">{requests && requests.length} Active Requests</span>
-            <table className="request-table">
+            {isLoading ? <LoadingScreen /> : requests.length >= 1 ? <table className="request-table">
                 <thead>
                     <tr>
                         <td className="table-cell">{user.role === 'business' ? 'Employee' : 'Business'}</td>
@@ -31,7 +32,7 @@ const Requests = () => {
                     {requests && requests.map(requestData => <SingleRequest key={requestData._id} requestData={requestData} />)}
                 </tbody> }
             </table>
-            {requests.length < 1 && <div className='no-request'>
+            : <div className='no-request'>
                 <div className='no-request-container'><CiFileOff className='no-request-icon'/>
                 <span>No requests to show</span></div>
                 </div>}

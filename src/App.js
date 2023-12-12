@@ -18,6 +18,7 @@ import EmployeeDashboard from './Pages/EmployeeFlow/EmployeeDashboard'
 import Requests from './Pages/Requests'
 import ViewShift from './Pages/Shifts/EmployeeShift/ViewShift'
 import AddShift from './Pages/Shifts/EmployeeShift/AddShift'
+import BusinessShift from './Pages/Shifts/BusinessShifts'
 
 function App() {
     const dispatch = useDispatch()
@@ -56,7 +57,7 @@ function App() {
                             <Route path="add-shop" element={<AddShop />} />
                             <Route path="my-shops" element={<Myshops />} />
                             <Route path="employees" element={<Employees />} />
-                            <Route path="shifts" element={<Shift />} />
+                            <Route path="shifts" element={<BusinessShift />} />
                             <Route path="schedule" element={<Schedule />} />
                             <Route path="requests" element={<Requests />} />
                         </Route>
