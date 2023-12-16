@@ -12,6 +12,7 @@ import DeleteShift from './DeleteShift'
 
 const AddShift = () => {
     const { shifts: myShifts } = useSelector((state) => state.shifts)
+    const { user } = useSelector(state => state.user);
     const dispatch = useDispatch()
     const [shifts, setShifts] = useState([])
     const [events, setEvents] = useState([])
@@ -36,7 +37,9 @@ const AddShift = () => {
             start,
             end,
             hours,
-            day
+            day,
+            employeeId: user._id,
+            amount: user.salary * hours
         }
 
         setShifts((prevShifts) => [...prevShifts, selectedShiftData])
@@ -47,7 +50,10 @@ const AddShift = () => {
         return (
             <div>
                 <p>{arg.timeText}</p>
-                {arg && <p>{arg.event._def.extendedProps.hours} hours</p>}
+                {arg && <div>
+                    <p>{arg.event._def.extendedProps.hours} hours</p>
+                    <p>{arg.event._def.extendedProps.amount} €</p>
+                    </div>}
             </div>
         )
     }

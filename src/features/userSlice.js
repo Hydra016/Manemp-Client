@@ -1,100 +1,118 @@
-import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
-import axios from "axios";
+import { createSlice, createAsyncThunk } from '@reduxjs/toolkit'
+import axios from 'axios'
 
-export const fetchUser = createAsyncThunk("user/fetchUser", async () => {
+export const fetchUser = createAsyncThunk('user/fetchUser', async () => {
     const response = await axios.get(`http://localhost:5000/api/current_user`, {
-      withCredentials: true
-    });
-    return response;
-  });
-
-  export const logoutUser = createAsyncThunk("user/logoutUser", async () => {
-    try {
-      const response = await axios.get(`http://localhost:5000/api/logout`, {
         withCredentials: true
-      });
-      return response;
+    })
+    return response
+})
+
+export const logoutUser = createAsyncThunk('user/logoutUser', async () => {
+    try {
+        const response = await axios.get(`http://localhost:5000/api/logout`, {
+            withCredentials: true
+        })
+        return response
     } catch (error) {
-      console.log(error.message)
+        console.log(error.message)
     }
-  });
+})
 
-  export const singupUser = createAsyncThunk("user/signup", async (data) => {
+export const singupUser = createAsyncThunk('user/signup', async (data) => {
     try {
-      	const response = await axios.put('http://localhost:5000/api/completeSetup', data)
-        return response;
+        const response = await axios.put('http://localhost:5000/api/completeSetup', data)
+        return response
     } catch (err) {
-      console.log(err.message)
+        console.log(err.message)
     }
-  })
+})
 
-  export const getEmployeesByBusiness = createAsyncThunk("user/getEmployeesByBusiness", async (data) => {
+export const getEmployeesByBusiness = createAsyncThunk('user/getEmployeesByBusiness', async (data) => {
     try {
-      const response = await axios.post('http://localhost:5000/api/myEmployees', data)
-      return response
+        const response = await axios.post('http://localhost:5000/api/myEmployees', data)
+        return response
     } catch (err) {
-      console.log(err)
+        console.log(err)
     }
-  })
-  
+})
+
+export const employeeSalary = createAsyncThunk('user/employeeSalary', async (data) => {
+    try {
+        const response = await axios.put('http://localhost:5000/api/setSalary', data)
+        return response
+    } catch (err) {
+        console.log(err)
+    }
+})
 
 const initialState = {
-  user: {},
-  isLoading: false,
-  isAuthenticated: false,
-  employees: []
-};
+    user: {},
+    isLoading: false,
+    isAuthenticated: false,
+    employees: []
+}
 
 const userSlice = createSlice({
-  name: "user",
-  initialState,
-  extraReducers: {
-    [fetchUser.pending]: (state) => {
-      state.isLoading = true;
-      state.isAuthenticated = false;
-    },
-    [fetchUser.fulfilled]: (state, action) => {
-      state.isLoading = false;
-      state.isAuthenticated = action.payload?.data.isAuthenticated;
-      state.user = action.payload?.data.data;
-    },
-    [fetchUser.rejected]: (state) => {
-      state.isLoading = false;
-      state.isAuthenticated = false;
-    },
-    [singupUser.pending]: (state) => {
-      state.isLoading = true;
-    },
-    [singupUser.fulfilled]: (state, action) => {
-      state.isLoading = false;
-      state.user = action.payload?.data.data;
-    },
-    [singupUser.rejected]: (state) => {
-      state.isLoading = false;
-      state.isAuthenticated = false;
-    },
-    [getEmployeesByBusiness.pending]: (state) => {
-      state.isLoading = true;
-    },
-    [getEmployeesByBusiness.fulfilled]: (state, action) => {
-      state.isLoading = false;
-      state.employees = action.payload?.data;
-    },
-    [getEmployeesByBusiness.rejected]: (state) => {
-      state.isLoading = false;
-    },
-    [logoutUser.pending]: (state) => {
-      state.isLoading = true;
-    },
-    [logoutUser.fulfilled]: (state, action) => {
-      state.isLoading = false;
-      state.user = {};
-      state.isAuthenticated = action.payload.data?.isAuthenticated
-    },
-    [logoutUser.rejected]: (state) => {
-      state.isLoading = false;
-    },
-  },
-});
+    name: 'user',
+    initialState,
+    extraReducers: {
+        [fetchUser.pending]: (state) => {
+            state.isLoading = true
+            state.isAuthenticated = false
+        },
+        [fetchUser.fulfilled]: (state, action) => {
+            state.isLoading = false
+            state.isAuthenticated = action.payload?.data.isAuthenticated
+            state.user = action.payload?.data.data
+        },
+        [fetchUser.rejected]: (state) => {
+            state.isLoading = false
+            state.isAuthenticated = false
+        },
+        [singupUser.pending]: (state) => {
+            state.isLoading = true
+        },
+        [singupUser.fulfilled]: (state, action) => {
+            state.isLoading = false
+            state.user = action.payload?.data.data
+        },
+        [singupUser.rejected]: (state) => {
+            state.isLoading = false
+            state.isAuthenticated = false
+        },
+        [getEmployeesByBusiness.pending]: (state) => {
+            state.isLoading = true
+        },
+        [getEmployeesByBusiness.fulfilled]: (state, action) => {
+            state.isLoading = false
+            state.employees = action.payload?.data
+        },
+        [getEmployeesByBusiness.rejected]: (state) => {
+            state.isLoading = false
+        },
+        [employeeSalary.pending]: (state) => {
+            state.isLoading = true
+        },
+        [employeeSalary.fulfilled]: (state, action) => {
+            state.isLoading = false
+            state.employees = action.payload?.data
+        },
+        [employeeSalary.rejected]: (state) => {
+            state.isLoading = false
+        },
+        [logoutUser.pending]: (state) => {
+            state.isLoading = true
+        },
+        [logoutUser.fulfilled]: (state, action) => {
+            state.isLoading = false
+            state.user = {}
+            state.isAuthenticated = action.payload.data?.isAuthenticated
+        },
+        [logoutUser.rejected]: (state) => {
+            state.isLoading = false
+        }
+    }
+})
 
-export default userSlice.reducer;
+export default userSlice.reducer

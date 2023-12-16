@@ -4,7 +4,11 @@ const initialState = {
     menuOpened: false,
     modalOpened: false,
     searchModal: false,
-    saveModal: false
+    saveModal: false,
+    salaryModal: {
+        status: false,
+        employeeId: null
+    }
 }
 
 const commonSlice = createSlice({
@@ -22,10 +26,14 @@ const commonSlice = createSlice({
         },
         openSaveModal: (state, action) => {
             state.saveModal = action.payload
+        },
+        OpenSalaryModal: (state, action) => {
+            state.salaryModal.status = action.payload.status
+            state.salaryModal.employeeId = action.payload.employeeId
         }
     }
 })
 
-export const { openMenu, openModal, openSearchModal, openSaveModal } = commonSlice.actions;
+export const { openMenu, openModal, openSearchModal, openSaveModal, OpenSalaryModal } = commonSlice.actions;
 export default commonSlice.reducer;
 
