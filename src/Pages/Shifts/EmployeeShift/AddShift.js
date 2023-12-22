@@ -5,7 +5,7 @@ import interactionPlugin from '@fullcalendar/interaction'
 import timeGridPlugin from '@fullcalendar/timegrid'
 import SaveModal from '../../../components/Modals/SaveModal'
 import { useDispatch, useSelector } from 'react-redux'
-import { getShifts } from '../../../features/shiftSlice'
+import { getEmployeeShifts } from '../../../features/shiftSlice'
 import ClearShifts from './ClearShifts'
 import { useMobileDetection } from '../../../hooks/useMobile'
 import DeleteShift from './DeleteShift'
@@ -20,8 +20,10 @@ const AddShift = () => {
     const isMobile = useMobileDetection()
     const [deletableShifts, setDeletableShifts] = useState([])
 
+    console.log(user._id)
+
     useEffect(() => {
-        dispatch(getShifts())
+        dispatch(getEmployeeShifts({ employeeId: user._id }))
         sessionStorage.getItem('shifts') && setShifts(JSON.parse(sessionStorage.getItem('shifts')))
     }, [])
 
