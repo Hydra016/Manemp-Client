@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import axios from 'axios'
+import LoadingScreen from '../../../components/shared/LoadingScreen'
 
 const EventContent = ({ arg }) => {
     const [employee, setEmployee] = useState(null)
@@ -19,13 +20,13 @@ const EventContent = ({ arg }) => {
 
     return (
         <div>
-            {arg && employee && (
+            {employee ? arg && (
                 <div>
                     <p>{employee && employee.givenName}</p>
                     <p>{arg.hours} hours</p>
                     <p>{arg.amount} €</p>
                 </div>
-            )}
+            ) : <LoadingScreen />}
         </div>
     )
 }

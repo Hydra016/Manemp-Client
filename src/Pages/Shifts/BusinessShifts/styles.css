@@ -1,0 +1,8 @@
+.businessShiftContainer {
+    position: relative;
+}
+
+.employeeSelectContainer {
+    left: 85%;
+    position: absolute;
+}

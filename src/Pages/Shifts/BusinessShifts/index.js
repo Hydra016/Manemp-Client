@@ -6,6 +6,7 @@ import timeGridPlugin from '@fullcalendar/timegrid'
 import { useDispatch, useSelector } from 'react-redux'
 import { getShifts } from '../../../features/shiftSlice'
 import EventContent from './EventContent'
+import './styles.css';
 
 const BusinessShift = () => {
     const { shifts } = useSelector((state) => state.shifts)
@@ -25,7 +26,14 @@ const BusinessShift = () => {
     }
 
     return (
-        <div>
+        <div className='businessShiftContainer'>
+            <div className='employeeSelectContainer'>
+                <select>
+                    <option>hello</option>
+                    <option>hello</option>
+                    <option>hello</option>
+                </select>
+            </div>
             <FullCalendar
                 plugins={[interactionPlugin, timeGridPlugin, dayGridPlugin]}
                 headerToolbar={{
