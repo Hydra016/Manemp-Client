@@ -8,7 +8,8 @@ const initialState = {
     salaryModal: {
         status: false,
         employeeId: null
-    }
+    },
+    currentSelectedShop: null
 }
 
 const commonSlice = createSlice({
@@ -30,10 +31,13 @@ const commonSlice = createSlice({
         OpenSalaryModal: (state, action) => {
             state.salaryModal.status = action.payload.status
             state.salaryModal.employeeId = action.payload.employeeId
+        },
+        setCurrentShop: (state, action) => {
+            state.currentSelectedShop = action.payload
         }
     }
 })
 
-export const { openMenu, openModal, openSearchModal, openSaveModal, OpenSalaryModal } = commonSlice.actions;
+export const { openMenu, openModal, openSearchModal, openSaveModal, OpenSalaryModal, setCurrentShop } = commonSlice.actions;
 export default commonSlice.reducer;
 

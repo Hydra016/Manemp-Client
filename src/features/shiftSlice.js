@@ -6,8 +6,8 @@ export const saveShifts = createAsyncThunk('shifts/saveShift', async (data) => {
     return response
 })
 
-export const getShifts = createAsyncThunk('shifts/getShift', async () => {
-    const response = await axios.get('http://localhost:5000/api/shifts')
+export const getShifts = createAsyncThunk('shifts/getShift', async (data) => {
+    const response = await axios.post('http://localhost:5000/api/shifts', data)
     return response
 })
 

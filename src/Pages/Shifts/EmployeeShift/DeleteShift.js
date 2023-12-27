@@ -3,17 +3,20 @@ import './styles.css'
 import { deleteShifts } from '../../../features/shiftSlice';
 import { useDispatch } from 'react-redux';
 
-const DeleteShift = ({data, disabled, setDeletableShifts}) => {
+const DeleteShift = ({data, disabled, setDeletableShifts, currentSelectedShop}) => {
   const dispatch = useDispatch();
+
+  console.log(currentSelectedShop)
 
   const handleClick = () => {
     dispatch(deleteShifts({
-      shifts: data
+      shifts: data,
+      shopId: currentSelectedShop
     }))
   }
 
   return (
-    <button  onClick={handleClick} className='clear-btn save-btn'>Delete</button>
+    <button onClick={currentSelectedShop !== 'all' ? handleClick : null} className='clear-btn save-btn'>Delete</button>
   )
 }
 

@@ -27,7 +27,7 @@ const Layout = () => {
                 <div>
                     <Header />
                 </div>
-                <div className="p-4">{<Outlet />}</div>
+                <div className="p-4 main">{<Outlet />}</div>
             </div>
         </div>
     )

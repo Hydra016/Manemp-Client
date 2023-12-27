@@ -68,7 +68,7 @@ export const DASHBOARD_SIDEBAR_EMPLOYEE_LINKS = [
 	},
 	{
 		key: 'view_shifts',
-		label: 'View Shifts',
+		label: 'View Schedule',
 		path: '/shifts',
 		icon: <HiOutlineEye />
 	},

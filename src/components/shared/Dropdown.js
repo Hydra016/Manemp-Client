@@ -1,8 +1,13 @@
 import React from 'react'
 import { HiChevronRight, HiUserCircle, HiQuestionMarkCircle, HiCog, HiOutlineLogout } from 'react-icons/hi'
 import { Link } from 'react-router-dom'
+import { openModal } from '../../features/commonSlice'
+import { useDispatch, useSelector } from 'react-redux'
 
 const Dropdown = ({ user }) => {
+    const dispatch = useDispatch()
+    const { modalOpened } = useSelector(state => state.common)
+
     return (
         <div className="dropdown">
             <div className="dropdown-img-container">
@@ -37,7 +42,7 @@ const Dropdown = ({ user }) => {
                     </div>
                     <HiChevronRight />
                 </Link>
-                <Link className="dropdown-link">
+                <Link onClick={() => dispatch(openModal(true))} className="dropdown-link">
                     <div className="dropdown-link-text-container">
                         <HiOutlineLogout className="icon" />
                         <span>Logout</span>

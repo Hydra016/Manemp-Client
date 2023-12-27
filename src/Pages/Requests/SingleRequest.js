@@ -59,15 +59,15 @@ const SingleRequest = ({ requestData }) => {
                                         acceptRequest({
                                             requestId: requestData._id,
                                             userId: user.googleId,
-                                            employeeId: requestData.employeeId
+                                            employeeId: requestData.employeeId,
+                                            shopName: user.shopName
                                         })
                                     )
                                 }
                                 className="retract-link accept-offer"
                             >
                                 <div>
-                                    <span>Accept Offer</span>
-                                    <HiTrash />
+                                    {user.role === 'business' && requestData.status.pending === 1 && <span>Accept Offer</span>}
                                 </div>
                             </button>
                         </td>

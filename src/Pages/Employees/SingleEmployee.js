@@ -2,9 +2,11 @@ import React, { useState } from 'react'
 import { useDispatch } from 'react-redux'
 import { Link } from 'react-router-dom'
 import { OpenSalaryModal } from '../../features/commonSlice'
+import { removeEmployee } from '../../features/userSlice'
 
 const SingleEmployee = ({ employee, shopId }) => {
     const dispatch = useDispatch()
+    console.log(employee.googleId)
 
     return (
         <tr className="singleRequest">
@@ -15,7 +17,7 @@ const SingleEmployee = ({ employee, shopId }) => {
             </td>
             <td className="table-cell">{employee.givenName}</td>
             <td className="table-cell">
-                {employee.shops.find((shop) => shop.shopId === shopId).dateJoined.slice(0, 10)}
+                {employee && employee.shops.find((shop) => shop.shopId === shopId).dateJoined.slice(0, 10)}
             </td>
             <td className="table-cell">
                 {employee.salary ? (
@@ -25,6 +27,9 @@ const SingleEmployee = ({ employee, shopId }) => {
                         set salary
                     </Link>
                 )}
+            </td>
+            <td className="table-cell">
+                <Link onClick={() => dispatch(removeEmployee({ businessId: shopId, employeeId: employee.googleId }))}>remove employee</Link>
             </td>
         </tr>
     )

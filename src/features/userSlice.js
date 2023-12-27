@@ -46,6 +46,17 @@ export const employeeSalary = createAsyncThunk('user/employeeSalary', async (dat
     }
 })
 
+export const removeEmployee = createAsyncThunk('user/removeEmployee', async (data) => {
+    try {
+        const response = await axios.delete('http://localhost:5000/api/employee/remove', {
+            data
+        })
+        return response
+    } catch (err) {
+        console.log(err)
+    }
+})
+
 const initialState = {
     user: {},
     isLoading: false,
@@ -99,6 +110,16 @@ const userSlice = createSlice({
             state.employees = action.payload?.data
         },
         [employeeSalary.rejected]: (state) => {
+            state.isLoading = false
+        },
+        [removeEmployee.pending]: (state) => {
+            state.isLoading = true
+        },
+        [removeEmployee.fulfilled]: (state, action) => {
+            state.isLoading = false
+            state.employees = action.payload?.data
+        },
+        [removeEmployee.rejected]: (state) => {
             state.isLoading = false
         },
         [logoutUser.pending]: (state) => {

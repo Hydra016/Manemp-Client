@@ -6,3 +6,12 @@
     left: 85%;
     position: absolute;
 }
+
+.employeeSelectContainer select {
+    padding: 5px 15px;
+    border-radius: 5px;
+}
+
+.sidebar-select {
+    margin-bottom: 3rem;
+}

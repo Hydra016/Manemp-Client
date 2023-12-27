@@ -1,20 +1,24 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import FullCalendar from '@fullcalendar/react'
 import dayGridPlugin from '@fullcalendar/daygrid'
 import interactionPlugin from '@fullcalendar/interaction'
 import timeGridPlugin from '@fullcalendar/timegrid'
 import { useDispatch, useSelector } from 'react-redux'
-import { getShifts } from '../../../features/shiftSlice'
+import { getShifts, getEmployeeShifts } from '../../../features/shiftSlice'
 import EventContent from './EventContent'
-import './styles.css';
+import './styles.css'
 
 const BusinessShift = () => {
     const { shifts } = useSelector((state) => state.shifts)
+    const { employees, user } = useSelector((state) => state.user)
+    const [employee, setCurrentEmployee] = useState('all')
     const dispatch = useDispatch()
 
     useEffect(() => {
-        dispatch(getShifts())
-    }, [])
+        employee == 'all'
+            ? dispatch(getShifts({ shopId: user.googleId }))
+            : dispatch(getEmployeeShifts({ employeeId: employee, shopId: user.googleId }))
+    }, [employee])
 
     const eventContent = (arg) => {
         return (
@@ -26,12 +30,18 @@ const BusinessShift = () => {
     }
 
     return (
-        <div className='businessShiftContainer'>
-            <div className='employeeSelectContainer'>
-                <select>
-                    <option>hello</option>
-                    <option>hello</option>
-                    <option>hello</option>
+        <div className="businessShiftContainer">
+            <div className="employeeSelectContainer">
+                <select onChange={(e) => setCurrentEmployee(e.target.value)}>
+                    <option value="all">All</option>
+                    {employees.length > 0 &&
+                        employees.map((emp) => {
+                            return (
+                                <option key={emp.googleId} value={emp.googleId}>
+                                    {emp.givenName}
+                                </option>
+                            )
+                        })}
                 </select>
             </div>
             <FullCalendar
@@ -42,9 +52,6 @@ const BusinessShift = () => {
                     right: 'timeGridWeek'
                 }}
                 nowIndicator={true}
-                editable={false}
-                droppable={true}
-                selectable={true}
                 selectMirror={true}
                 events={shifts}
                 eventContent={eventContent}

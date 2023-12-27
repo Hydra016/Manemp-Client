@@ -6,6 +6,10 @@
     overflow: hidden;
 }
 
+.main {
+  overflow-y: scroll;
+}
+
 .header {
     background-color: #fff;
     height: 3rem;
