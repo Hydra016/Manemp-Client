@@ -95,8 +95,6 @@ const AddShift = () => {
         }
     }
 
-    console.log(deletableShifts)
-
     return (
         <div className="scheduler-container">
             <div className="top-btn-container">

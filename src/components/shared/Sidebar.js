@@ -39,7 +39,9 @@ const Sidebar = () => {
                     >
                         <option value="all">All</option>
                         {user.shops.map((shop) => (
-                            <option value={shop.shopId}>{shop.shopName}</option>
+                            <option key={shop._id} value={shop.shopId}>
+                                {shop.shopName}
+                            </option>
                         ))}
                     </select>
                 )}

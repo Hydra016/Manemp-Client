@@ -16,7 +16,6 @@ export const deleteSchedule = createAsyncThunk('schedule/deleteSchedule', async 
     const response = await axios.delete('http://localhost:5000/api/schedule/delete', {
         data
     })
-    console.log(response)
     return response
 })
 

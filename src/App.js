@@ -21,6 +21,7 @@ import AddShift from './Pages/Shifts/EmployeeShift/AddShift'
 import BusinessShift from './Pages/Shifts/BusinessShifts'
 import io from 'socket.io-client'
 import { getEmployeesByBusiness } from './features/userSlice'
+import EmployeeSchedule from './Pages/Schedule/Employee'
 
 function App() {
     const dispatch = useDispatch()
@@ -86,6 +87,7 @@ function App() {
                             <Route path="requests" element={<Requests />} />
                             <Route path='add-shift' element={<AddShift />} />
                             <Route path="shifts" element={<ViewShift />} />
+                            <Route path="schedule" element={<EmployeeSchedule />} />
                         </Route>
                     )}
                 </Routes>
