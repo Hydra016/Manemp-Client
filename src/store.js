@@ -4,6 +4,7 @@ import shopReducer from "./features/shopSlice";
 import commonReducer from "./features/commonSlice";
 import requestsReducer from "./features/requestsSlice";
 import shiftReducer from "./features/shiftSlice";
+import scheduleSlice from "./features/scheduleSlice";
 
 export const store = configureStore({
   reducer: {
@@ -11,7 +12,8 @@ export const store = configureStore({
     shop: shopReducer,
     common: commonReducer,
     request: requestsReducer,
-    shifts: shiftReducer
+    shifts: shiftReducer,
+    schedule: scheduleSlice
   },
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware({

@@ -10,16 +10,18 @@ import { openMenu } from '../../features/commonSlice'
 import Modal from '../Modals/Modal'
 import SearchModal from '../Modals/SearchModal'
 import SalaryModal from '../Modals/SalaryModal'
+import ShiftModal from '../Modals/ShiftModal'
 
 const Layout = () => {
     const isMobile = useMobileDetection()
-    const { menuOpened, modalOpened, searchModal, salaryModal } = useSelector((state) => state.common)
+    const { menuOpened, modalOpened, searchModal, salaryModal, shiftModal } = useSelector((state) => state.common)
     const dispatch = useDispatch()
 
     return (
         <div className="layout">
             <Modal isOpen={modalOpened} />
             <SearchModal isOpen={searchModal} />
+            <ShiftModal isOpen={shiftModal} />
             <SalaryModal isOpen={salaryModal.status} />
             {isMobile ? <Menu /> : <Sidebar />}
             <div className={menuOpened && isMobile ? 'overlay' : 'hidden'} onClick={() => dispatch(openMenu(false))}></div>

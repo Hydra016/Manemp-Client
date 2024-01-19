@@ -1,17 +1,28 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { fetchRequests } from '../../features/requestsSlice'
 import SingleRequest from './SingleRequest'
 import { CiFileOff } from 'react-icons/ci'
 import LoadingScreen from '../../components/shared/LoadingScreen'
+import io from 'socket.io-client'
 
 const Requests = () => {
     const { requests, isLoading, employeeRequests } = useSelector((state) => state.request)
     const { user } = useSelector((state) => state.user)
     const dispatch = useDispatch()
+    const [socketConnected, setSocketConnected] = useState(false)
+    const socket = io('http://localhost:5000')
+
+    useEffect(() => {
+
+        socket.emit("setup", user);
+        socket.on('connection', () => setSocketConnected(true))
+    }, [])
+
 
     useEffect(() => {
         dispatch(fetchRequests({ userId: user.googleId }))
+        socket.emit('join chat', user.googleId)
     }, [])
 
     return (

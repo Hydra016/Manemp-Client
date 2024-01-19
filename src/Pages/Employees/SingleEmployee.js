@@ -6,8 +6,7 @@ import { removeEmployee } from '../../features/userSlice'
 
 const SingleEmployee = ({ employee, shopId }) => {
     const dispatch = useDispatch()
-    console.log(employee.googleId)
-
+    
     return (
         <tr className="singleRequest">
             <td className="table-cell">
@@ -17,7 +16,7 @@ const SingleEmployee = ({ employee, shopId }) => {
             </td>
             <td className="table-cell">{employee.givenName}</td>
             <td className="table-cell">
-                {employee && employee.shops.find((shop) => shop.shopId === shopId).dateJoined.slice(0, 10)}
+                {employee && employee.shops && employee.shops.find((shop) => shop.shopId === shopId).dateJoined.slice(0, 10)}
             </td>
             <td className="table-cell">
                 {employee.salary ? (

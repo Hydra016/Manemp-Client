@@ -25,12 +25,18 @@ export const deleteShifts = createAsyncThunk('shifts/deleteShifts', async (data)
 
 const initialState = {
     shifts: [],
+    temporaryShifts: [],
     isLoading: false
 }
 
 const shiftSlice = createSlice({
     name: 'shop',
     initialState,
+    reducers: {
+        storeTemporaryShifts: (state, action) => {
+            state.temporaryShifts = action.payload;
+        }
+    },
     extraReducers: {
         [saveShifts.pending]: (state) => {
             state.isLoading = true
@@ -74,5 +80,7 @@ const shiftSlice = createSlice({
         }
     }
 })
+
+export const { storeTemporaryShifts } = shiftSlice.actions;
 
 export default shiftSlice.reducer

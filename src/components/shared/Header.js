@@ -28,7 +28,7 @@ const Header = () => {
                 </button>
             )}
             <div className='header-sub'>
-            <span>Welcome {user && user.role === 'business' ? user.shopName : user.givenName}</span>
+            <span className='header-navbar-heading'>Welcome {user && user.role === 'business' ? user.shopName : user.givenName}</span>
             <div className='header-secondary-container'>
 
             {user.role === 'employee' && <div className='employee-header-side'>

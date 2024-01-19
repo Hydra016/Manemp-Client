@@ -9,7 +9,10 @@ const initialState = {
         status: false,
         employeeId: null
     },
-    currentSelectedShop: null
+    shiftModal: false,
+    currentSelectedShop: null,
+    employeeSchedule: null,
+    currentScheduleEmployee: null
 }
 
 const commonSlice = createSlice({
@@ -32,12 +35,22 @@ const commonSlice = createSlice({
             state.salaryModal.status = action.payload.status
             state.salaryModal.employeeId = action.payload.employeeId
         },
+        openShiftModal: (state, action) => {
+            state.shiftModal = action.payload
+        },
         setCurrentShop: (state, action) => {
             state.currentSelectedShop = action.payload
+        },
+        setEmployeeSchedule: (state, action) => {
+            state.employeeSchedule = action.payload
+        },
+        setCurrentScheduleEmployee: (state, action) => {
+            console.log(action.payload)
+            state.currentScheduleEmployee = action.payload
         }
     }
 })
 
-export const { openMenu, openModal, openSearchModal, openSaveModal, OpenSalaryModal, setCurrentShop } = commonSlice.actions;
+export const { openMenu, openModal, openSearchModal, openSaveModal, OpenSalaryModal, setCurrentShop, openShiftModal, setEmployeeSchedule, setCurrentScheduleEmployee } = commonSlice.actions;
 export default commonSlice.reducer;
 

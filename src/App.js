@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import { BrowserRouter, Route, Routes } from 'react-router-dom'
 import Dashboard from './Pages/Dashboard'
 import { useDispatch, useSelector } from 'react-redux'
@@ -19,14 +19,24 @@ import Requests from './Pages/Requests'
 import ViewShift from './Pages/Shifts/EmployeeShift/ViewShift'
 import AddShift from './Pages/Shifts/EmployeeShift/AddShift'
 import BusinessShift from './Pages/Shifts/BusinessShifts'
+import io from 'socket.io-client'
+import { getEmployeesByBusiness } from './features/userSlice'
 
 function App() {
     const dispatch = useDispatch()
     const { user } = useSelector((state) => state.user)
+    // const [socketConnected, setSocketConnected] = useState(false)
 
     useEffect(() => {
         dispatch(fetchUser())
     }, [])
+
+    // useEffect(() => {
+    //     const socket = io('http://localhost:5000')
+
+    //     socket.emit("setup", user);
+    //     socket.on('connection', () => setSocketConnected(true))
+    // }, [])
 
     return (
         <div className="App">
