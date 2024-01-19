@@ -164,16 +164,15 @@
 .employee-header-search {
   display: flex;
   align-items: center;
-  margin-right: 1rem;
   border: 1px solid #94a3b8;
   border-radius: 5px;
-  padding: 5px 10px;
+  padding: 8px 16px;
+  width: 280px;
 }
 
 .employee-header-search input {
-  margin-left: 10px;
   border-radius: 5px;
-
+  width: 100%;
 }
 
 .employee-header-search input:focus {
@@ -272,4 +271,15 @@
 
 .icon {
   transform: scale(1.5);
+}
+
+.header-name {
+  display: flex;
+  align-items: center;
+  margin-left: 1rem;
+}
+
+.header-down-icon {
+  margin-top: 5px;
+  margin-left: 5px;
 }

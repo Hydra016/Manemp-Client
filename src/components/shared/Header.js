@@ -6,6 +6,8 @@ import { useMobileDetection } from '../../hooks/useMobile'
 import { searchShop } from '../../features/shopSlice'
 import { Link } from 'react-router-dom'
 import Dropdown from './Dropdown'
+import { FiChevronDown } from "react-icons/fi";
+import { CiSearch } from "react-icons/ci";
 
 const Header = () => {
     const { user } = useSelector((state) => state.user)
@@ -28,25 +30,30 @@ const Header = () => {
                 </button>
             )}
             <div className='header-sub'>
-            <span className='header-navbar-heading'>Welcome {user && user.role === 'business' ? user.shopName : user.givenName}</span>
-            <div className='header-secondary-container'>
-
+            {/* <span className='header-navbar-heading'>Welcome {user && user.role === 'business' ? user.shopName : user.givenName}</span> */}
             {user.role === 'employee' && <div className='employee-header-side'>
             <div className='employee-header-search'>
+                <input onChange={(e) => setdata({...data, shopId: e.target.value})} type='text' placeholder='Enter shop id' />
                 <button onClick={() => {
                     dispatch(searchShop(data))
                     dispatch(openSearchModal(true))
                 }
-                }><HiSearch /></button>
-                <input onChange={(e) => setdata({...data, shopId: e.target.value})} type='text' placeholder='Enter shop id' />
+                }><CiSearch fill='#94a3b8' /></button>
             </div>
             </div>}
+            <div className='header-secondary-container'>
+
+            
             <div className='header-notsub'>
             <Link className='notification'>
-            <HiOutlineBell />
+            <HiOutlineBell color='#94a3b8' />
             </Link>
-            <button onClick={() => setShowDropDown(!showDropDown)}>
             <img src={user && user.picture} className='user-img' />
+            <button onClick={() => setShowDropDown(!showDropDown)}>
+            <div className='header-name'>
+            <span className='header-navbar-heading'>{user && user.role === 'business' ? user.shopName : user.givenName}</span>
+            <FiChevronDown className='header-down-icon' />
+            </div>
             </button>
             </div>
             </div>

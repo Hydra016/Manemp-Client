@@ -37,7 +37,6 @@ const EmployeeSchedule = () => {
                 events={!isLoading && schedule}
                 eventContent={eventContent}
                 initialEvents={schedule && schedule}
-                // eventClick={handleEventClick}
             />
     </div>
   )
