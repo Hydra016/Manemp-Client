@@ -85,8 +85,6 @@ const AddShift = () => {
         }
     }
 
-    console.log(currentSelectedShop)
-
     return (
         <div className="scheduler-container">
             <div>

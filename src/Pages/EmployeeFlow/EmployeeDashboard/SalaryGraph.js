@@ -1,9 +1,9 @@
 import React from 'react'
 import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend } from 'recharts'
 
-const SalaryGraph = () => {
-    const oldSalary = 1000 
-    const newSalary = 1300 
+const SalaryGraph = ({ currentSalary, previousSalary }) => {
+    const oldSalary = previousSalary
+    const newSalary = currentSalary
 
     const percentageIncrease = ((newSalary - oldSalary) / oldSalary) * 100
 
@@ -15,7 +15,12 @@ const SalaryGraph = () => {
     return (
         <div className="efficency-graph-container">
             <h1 className="box-heading">Salary</h1>
-            <p className="efficiency-graph-text">+{percentageIncrease.toFixed(1)}%</p>
+            <p className="efficiency-graph-text">
+                {percentageIncrease.toFixed(1) > 0
+                    ? `+${percentageIncrease.toFixed(1)}`
+                    : percentageIncrease.toFixed(1)}
+                %
+            </p>
             <p className="efficiency-graph-text-sub">salary increase</p>
             <div>
                 {' '}

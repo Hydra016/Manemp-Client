@@ -23,10 +23,24 @@ export const deleteShifts = createAsyncThunk('shifts/deleteShifts', async (data)
     return response
 })
 
+export const getSalaries = createAsyncThunk('shifts/monthlySalary', async (data) => {
+    const response = await axios.post('http://localhost:5000/api/MonthlySalary', data);
+    return response
+})
+
+export const getMonthlyHours = createAsyncThunk('shifts/getMonthlyHours', async (data) => {
+    const response = await axios.post('http://localhost:5000/api/monthlyHours', data);
+    return response
+})
+
+
 const initialState = {
     shifts: [],
     temporaryShifts: [],
-    isLoading: false
+    isLoading: false,
+    currentSalary: 0,
+    previousSalary: 0,
+    monthlyHours: []
 }
 
 const shiftSlice = createSlice({
@@ -76,6 +90,27 @@ const shiftSlice = createSlice({
             state.shifts = action.payload?.data.data
         },
         [deleteShifts.rejected]: (state) => {
+            state.isLoading = false
+        },
+        [getSalaries.pending]: (state) => {
+            state.isLoading = true
+        },
+        [getSalaries.fulfilled]: (state, action) => {
+            state.isLoading = false
+            state.currentSalary = action.payload?.data.data.salaryCurrentMonth
+            state.previousSalary = action.payload?.data.data.salaryPreviousMonth
+        },
+        [getSalaries.rejected]: (state) => {
+            state.isLoading = false
+        },
+        [getMonthlyHours.pending]: (state) => {
+            state.isLoading = true
+        },
+        [getMonthlyHours.fulfilled]: (state, action) => {
+            state.isLoading = false
+            state.monthlyHours = action.payload?.data.data
+        },
+        [getMonthlyHours.rejected]: (state) => {
             state.isLoading = false
         }
     }

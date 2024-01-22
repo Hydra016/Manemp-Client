@@ -8,6 +8,7 @@ import { Link } from 'react-router-dom'
 import Dropdown from './Dropdown'
 import { FiChevronDown } from 'react-icons/fi'
 import { CiSearch } from 'react-icons/ci'
+import { LuMessageSquare } from "react-icons/lu";
 
 const Header = () => {
     const { user } = useSelector((state) => state.user)
@@ -53,6 +54,9 @@ const Header = () => {
                     <div className="header-notsub">
                         <Link className="notification">
                             <HiOutlineBell color="#94a3b8" />
+                        </Link>
+                        <Link className="notification">
+                            <LuMessageSquare color="#94a3b8" />
                         </Link>
                         <img src={user && user.picture} className="user-img" />
                         <button onClick={() => setShowDropDown(!showDropDown)}>

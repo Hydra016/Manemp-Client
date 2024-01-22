@@ -13,12 +13,14 @@ import { getEmployeesByBusiness } from '../../features/userSlice'
 
 const Sidebar = () => {
     const dispatch = useDispatch()
+    const { shifts: myShifts, isLoading } = useSelector((state) => state.shifts)
     const { user } = useSelector((state) => state.user)
     const [shopId, setShopId] = useState('')
 
     useEffect(() => {
         dispatch(getEmployeesByBusiness({ shopId: user.googleId }))
-        user && user.role === 'employee' && user.shops.length > 0 ? setShopId(user.shops[0].shopId) : setShopId('all')
+        // user && user.role === 'employee' && user.shops.length > 0 ? setShopId(user.shops[0].shopId) : setShopId('all')
+        setShopId('all')
     }, [])
 
     useEffect(() => {
