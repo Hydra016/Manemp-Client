@@ -21,6 +21,11 @@ const EmployeeDashboard = () => {
         dispatch(getMonthlyHours({ empId: user.googleId, shopId: currentSelectedShop }))
     }, [currentSelectedShop]);
 
+    useEffect(() => {
+        dispatch(getSalaries({ empId: user.googleId, shopId: currentSelectedShop }))
+        dispatch(getMonthlyHours({ empId: user.googleId, shopId: currentSelectedShop }))
+    }, [])
+
     const d = new Date();
     const currentMonth = d.getMonth();
 

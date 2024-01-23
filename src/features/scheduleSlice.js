@@ -19,9 +19,15 @@ export const deleteSchedule = createAsyncThunk('schedule/deleteSchedule', async 
     return response
 })
 
+export const getUpcomingShifts = createAsyncThunk('schedule/getUpcomingShifts', async (data) => {
+    const response = await axios.post('http://localhost:5000/api/schedule/upcomingShifts', data);
+    return response
+})
+
 const initialState = {
     schedule: [],
     isLoading: false,
+    upcomingShifts: []
     // error: [
     //     ''
     // ]
@@ -62,7 +68,17 @@ const scheduleSlice = createSlice({
         },
         [deleteSchedule.rejected] : (state, action) => {
             state.isLoading = false
-        }
+        },
+        [getUpcomingShifts.pending] : (state, action) => {
+            state.isLoading = true
+        },
+        [getUpcomingShifts.fulfilled] : (state, action) => {
+            state.upcomingShifts = action.payload?.data.data;
+            state.isLoading = false
+        },
+        [getUpcomingShifts.rejected] : (state, action) => {
+            state.isLoading = false
+        },
     }
 })
 
